@@ -4,7 +4,12 @@
 
 (deftest parser-test
   (testing "Parser test1."
-    (is (= (parse "(+ 1 1)") '(+ 1 1)))))
+    (let [simple-input-token (tokenize "(+ 1 1)")
+          nested-input-token (tokenize "(+ 1 (* 2 2) 1)")
+          nested-2-level-token (tokenize "(* 4 (* 3.14 (* r r)))")]
+      (is (= (parse simple-input-token) ["+" 1 1]))
+      (is (= (parse nested-input-token) ["+" 1 ["*" 2 2] 1]))
+      (is (= (parse nested-2-level-token) ["*" 4 ["*" 3.14 ["*" "r" "r"]]])))))
 
 (deftest tokenize-test
   (testing "Tokenize simple input."
