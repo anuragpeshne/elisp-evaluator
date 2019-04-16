@@ -34,9 +34,10 @@
 
 (defn tokenize
   "Takes in string of characters, returns list of tokens"
-  [input-string]
-  (let [tokens (-> input-string
-                   (str/replace #"\(" " ( ")
-                   (str/replace #"\)" " ) ")
-                   (str/split #" "))]
-    (filter #(not (empty? %))  tokens)))
+  ([] [])
+  ([input-string]
+   (let [tokens (-> input-string
+                    (str/replace #"\(" " ( ")
+                    (str/replace #"\)" " ) ")
+                    (str/split #" "))]
+     (filter #(not (empty? %))  tokens))))

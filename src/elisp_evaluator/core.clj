@@ -1,4 +1,5 @@
-(ns elisp-evaluator.core)
+(ns elisp-evaluator.core
+  (:require [elisp-evaluator.core :refer :all]))
 
 (defn foo
   "I don't do a whole lot."
